@@ -2,12 +2,14 @@ package br.com.alan.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
 import br.com.alan.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	@NotEmpty(message = "Preenchimento obrigadotio")
 	private String nome;
 	
 	public CategoriaDTO() {}
