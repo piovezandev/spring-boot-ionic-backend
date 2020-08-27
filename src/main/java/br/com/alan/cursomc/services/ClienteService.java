@@ -29,9 +29,9 @@ public class ClienteService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));	}
 	
 	public Cliente update(Cliente cliente) {
-		Cliente cli = find(cliente.getId());
-		updateData(cli, cliente);
-		return clienteRepository.save(cli);
+		Cliente clienteAux = find(cliente.getId());
+		updateData(clienteAux, cliente);
+		return clienteRepository.save(clienteAux);
 	}
 	
 	public void delete(Integer id) {

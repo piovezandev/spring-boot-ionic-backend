@@ -12,6 +12,7 @@ import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
 
 import br.com.alan.cursomc.domain.Categoria;
+import br.com.alan.cursomc.domain.Cliente;
 import br.com.alan.cursomc.dto.CategoriaDTO;
 import br.com.alan.cursomc.repositories.CategoriaRepository;
 import br.com.alan.cursomc.services.exceptions.DataIntegrityException;
@@ -35,10 +36,11 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria categoria) {
-		find(categoria.getId());
-		return categoriaRepository.save(categoria);
+		Categoria categoriaAux = find(categoria.getId());
+		updateData(categoriaAux, categoria);
+		return categoriaRepository.save(categoriaAux);
 	}
-	
+
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -61,4 +63,9 @@ public class CategoriaService {
 	public Categoria fromDto(CategoriaDTO categoriaDTO) {
 		return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
 	}
+	
+	private void updateData(Categoria categoriaAux, Categoria categoria) {
+		categoriaAux.setNome(categoria.getNome());
+	}
+
 }
