@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.alan.cursomc.domain.Categoria;
+import br.com.alan.cursomc.domain.Cliente;
 import br.com.alan.cursomc.dto.CategoriaDTO;
 import br.com.alan.cursomc.services.CategoriaService;
 
@@ -47,7 +48,8 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT	)
-	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id){
+	public ResponseEntity<Void> update(@RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id){
+		Categoria categoria = categoriaService.fromDto(categoriaDTO);
 		categoria.setId(id);
 		categoria = categoriaService.update(categoria);
 		return ResponseEntity.noContent().build();
